@@ -144,11 +144,11 @@ const chk_confirm_password_valid = (arg1: string) => {
 }
 
 const chk_password_match = (arg1: string,arg2: string) => {
-  if(arg1.trim() !== arg2.trim())
+  if(arg1.trim() === arg2.trim()) 
   {
-    return true
+    return false
   }
-  return false
+  return true 
 }
 
 const chk_invalid_email = (arg1: string) => {

@@ -27,6 +27,18 @@ module.exports = (io: Socket) => {
 
     return
   })
+  
+
+  con.authenticate = ((req: Request, res: Response) => {
+      
+      res.status(200).json({
+        message: {
+          user: res.locals.user,
+          token: `${req.headers.token}`
+        } 
+      })
+      return
+  })
 
   return con
 }

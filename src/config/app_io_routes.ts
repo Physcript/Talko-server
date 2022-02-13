@@ -9,6 +9,10 @@ module.exports = (app: any, io: Socket) => {
 
   io.on('connection',(socket) => {
     console.log('connected')
+    
+    socket.on('login', () => {
+      console.log('joining room')
+    })
 
     app.use('/api',userController)
 

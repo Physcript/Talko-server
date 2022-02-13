@@ -33,7 +33,9 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 
   const data = await generate_login_token(user)
 
-  user.token = data.token 
+  user.token = data.token
+  user.status = true 
+
   await user.save()
 
   res.locals.token = data.token 
@@ -60,7 +62,6 @@ const generate_login_token = async (user: IUser) => {
     _id: user._id,
     email: user.email,
     uid: user.uid,
-    status: user.status,
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,
 

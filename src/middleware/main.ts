@@ -1,5 +1,8 @@
 import User from '../model/User'
+import config from '../config/main'
+import jwt from 'jsonwebtoken'
 import { Request,Response,NextFunction } from 'express'
+import { IUser } from '../interface/user'
 
 export const chk_valid_name = async (name: string) => {
  
@@ -30,3 +33,22 @@ export const chk_existing_email = async (req: Request, res:Response) => {
   res.locals.user = user
   return
 }
+
+export const chk_valid_token = async (token: string , res: Response) => {
+
+  const decode = await jwt.verify(token,`${config.TOKEN.LOGIN}`, (error,decode) => {
+    
+    if(error)
+    {
+      return null 
+    }
+ 
+    return decode
+
+  })
+  
+  res.locals.user = decode
+
+}
+
+
