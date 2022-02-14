@@ -12,7 +12,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
   const { email,password } = req.body
   await chk_existing_email(req,res)
   const user: IUser = await res.locals.user
-
+  
   if(user === null)
   {
     res.status(400).json({
@@ -39,7 +39,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
   await user.save()
 
   res.locals.token = data.token 
-  res.locals.user = data.user
+  res.locals.user = data.user 
 
   next()
 }
@@ -60,6 +60,7 @@ const generate_login_token = async (user: IUser) => {
   const newUser = {
 
     _id: user._id,
+    name: user.name,
     email: user.email,
     uid: user.uid,
     createdAt: user.createdAt,

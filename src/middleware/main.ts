@@ -48,7 +48,8 @@ export const chk_valid_token = async (token: string , res: Response) => {
   })
   
   res.locals.user = decode
-
+  
+  return
 }
 
 
